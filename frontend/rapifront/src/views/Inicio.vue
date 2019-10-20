@@ -79,7 +79,7 @@ data(){
 		var contraseña=this.logeo.userPassword;
         this.usuarios.forEach(function(element) {
 			
-             if ((element.userName == name)&& (element.userPassword == contraseña)) {window.location.href="Princial/"+element.usuarioId}	   
+             if ((element.userName == name)&& (element.userPassword == contraseña)) {window.location.href="Principal/"+element.usuarioId}	   
          });
 		}
     }

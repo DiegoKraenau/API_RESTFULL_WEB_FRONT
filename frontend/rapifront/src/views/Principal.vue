@@ -11,7 +11,7 @@
       <a class="nav-link" href="#">Mi perfil</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Publicar Servicio</a>
+      <a class="nav-link" href="" v-on:click.prevent="post">Publicar Servicio</a>
     </li>
      <li class="nav-item">
       <a class="nav-link" href="#">Buscar Servicio</a>
@@ -31,7 +31,11 @@
 
 <script>
 export default {
-
+ methods:{
+        post:function(){
+            window.location.href="/agregarServicio/"+this.$route.params.id
+        }
+    }
 }
 </script>
 

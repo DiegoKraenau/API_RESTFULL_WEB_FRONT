@@ -28,7 +28,7 @@
 
 	<div class="container">
 		<div class="card">
-			<div class="card-header text-white bg-secondary">Buscar Servicios</div>
+			<div class="card-header text-white bg-secondary">SERVICIOS</div>
 			<div class="card-body">
                 <div class="form-inline">
 					<form >
@@ -43,6 +43,41 @@
 							</div>
 						</div>
 					</form>
+                        <div class="col">
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Nuevo</button>
+				
+                     <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                         <!-- Registra nuevo servicio-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                 
+                                 <h4 class="modal-title">Servicio</h4>
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                                <div class="modal-body">
+								<p>Nombre Servicio</p>
+                                <input id="nombre" type="text" class="form-control" name="servicioNombre">
+                                <p> Descripcion </p>
+                                <input id="descripcion" type="text" class="form-control" name="servicioDescripcion">
+                                <p> Costo </p>
+                                <input id="costo" type="text" class="form-control" name="servicioCosto">
+                                <p> Categoria </p>
+                                <input id="categoria" type="text" class="form-control" name="servicioCategoria">
+                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Registrar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+                            </div>
+                     </div>
+
+  </div>
+</div>
+                        
+                        
+                        
+                        </div>
                 </div>	
 			</div>
 				<div class="table responsive">
@@ -52,7 +87,7 @@
 								<th>Id</th>
 								<th>Nombre</th>
 								<th>Categoria</th>
-								<th>Cost</th>
+								<th>Costo</th>
 								<th>Detalle</th>								
 							</tr>
 						</thead>
@@ -62,7 +97,7 @@
 								<td >{{detalle.serviceName}}</td>
 								<td >{{detalle.categoryName}}</td>
 								<td >{{detalle.cost}}</td>
-								<td><a :href="'/detalle/' + detalle.serviceDetailsId" class="btn btn-success">Detallle</a>
+								<td><a :href="'/detalle/' + detalle.serviceDetailsId" class="btn btn-success">Detalle</a>
 								</td>								
 							</tr>
 						</tbody>
@@ -80,9 +115,18 @@ import axios from 'axios'
 export default {
     data(){
         return{
-			detalles:null
+            search:"",
+            editedIndex: -1,
 
-        }
+
+            //Model
+            id:"",
+            nombreServicio:"",
+            descripcionServicio:"",
+            costoServicio:"",
+            categoriaServicio:""
+        
+        };
     },
     mounted(){
         this.getDetalles();
@@ -95,7 +139,31 @@ export default {
                         this.detalles=response.data
                     })
                     .catch(e=>console.log(e))
+        },
+
+    
+        close(){
+            this.dialog = false;
+        },
+
+        limpiar(){
+            this.id = "";
+            this.nombreServicio = "";
+            this.descripcionServicio="";
+            this.costoServicio = "";
+            this.categoriaServicio = "";
+        },
+        guardar(){
+            let me = this;
+
+            axios.post("api/Servicio",{
+
+                nombreServicio : me.nombreServicio,
+                
+            })
         }
+
+
     }
 
 }

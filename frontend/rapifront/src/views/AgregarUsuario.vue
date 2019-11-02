@@ -102,7 +102,7 @@ export default {
     },
     methods:{
         post:function(){
-            this.$http.post('https://localhost:5001/api/Customer',{
+            this.$http.post('https://localhost:5001/api/Customers',{
                  name: this.usuario.name,
                  lastName: this.usuario.lastName,
                  email: this.usuario.email,

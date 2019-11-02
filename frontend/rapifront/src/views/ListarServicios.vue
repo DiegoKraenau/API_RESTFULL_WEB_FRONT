@@ -28,18 +28,16 @@
 
 	<div class="container">
 		<div class="card">
-			<div class="card-header text-white bg-secondary">Buscar Servicios</div>
+			<div class="card-header text-white bg-secondary" >Buscar Servicios</div>
 			<div class="card-body">
                 <div class="form-inline">
 					<form >
 						<div class="row">
 							<div class="col-8">
-								<input id="inputServicioNombre" type="text"
-								class="form-control" name="servicioNombre"
-								placeholder="Buscar por nombre">
+								<input  type="text" class="form-control" name="servicioNombre" placeholder="Buscar por nombre" v-model="busqueda.nombre">
 							</div>
 							<div class="col">
-								<button type="submit" class="btn btn-danger">Buscar</button>
+								<button type="submit" class="btn btn-danger"  v-on:click.prevent="buscar">Buscar</button>
 							</div>
 						</div>
 					</form>
@@ -80,7 +78,10 @@ import axios from 'axios'
 export default {
     data(){
         return{
-			detalles:null
+			detalles:null,
+			busqueda:{
+				nombre:""
+			}
 
         }
     },
@@ -91,6 +92,15 @@ export default {
         getDetalles(){
             axios.
                 get('https://localhost:5001/api/ServiceDetails')
+                    .then(response=>{
+                        this.detalles=response.data
+                    })
+                    .catch(e=>console.log(e))
+		},
+		buscar:function(){
+			this.detalles=null;
+            axios.
+                get('https://localhost:5001/api/ServiceDetails/'+this.busqueda.nombre+'/servicios')
                     .then(response=>{
                         this.detalles=response.data
                     })

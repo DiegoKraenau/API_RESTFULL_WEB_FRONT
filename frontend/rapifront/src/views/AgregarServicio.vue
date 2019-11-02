@@ -82,7 +82,7 @@ export default {
     methods:{
         getCategorias(){
             axios.
-                get('https://localhost:5001/api/ServiceCategory')
+                get('https://localhost:5001/api/ServiceCategories')
                     .then(response=>{
                         this.categorias=response.data;
                         console.log(this.$route.params.id)
@@ -92,7 +92,7 @@ export default {
         },
         getSupplier(){
             axios.
-                get("https://localhost:5001/api/Supplier/"+this.$route.params.id)
+                get("https://localhost:5001/api/Suppliers/"+this.$route.params.id)
                     .then(response=>{
                         this.supplier=response.data
                     })

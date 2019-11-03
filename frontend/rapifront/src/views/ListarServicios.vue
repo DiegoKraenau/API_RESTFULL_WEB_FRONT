@@ -3,6 +3,7 @@
 <head>
 </head>
 <body>
+	
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="#">RapiSolver</a>
@@ -34,7 +35,7 @@
 					<form >
 						<div class="row">
 							<div class="col-8">
-								<input  type="text" class="form-control" name="servicioNombre" placeholder="Buscar por nombre" v-model="busqueda.nombre">
+								<input  type="text" class="form-control" id="servicioNombre" name="servicioNombre" placeholder="Buscar por nombre"  v-model="busqueda.nombre">
 							</div>
 							<div class="col">
 								<button type="submit" class="btn btn-danger"  v-on:click.prevent="buscar">Buscar</button>
@@ -42,7 +43,10 @@
 						</div>
 					</form>
                 </div>	
+				<br>
+				<input type="radio"  v-on:click.prevent="ordenarBajoCosto" > Ordenar por bajo Costo<br>
 			</div>
+			
 				<div class="table responsive">
 					<table class="table table-striped">
 						<thead class="thead-dark">
@@ -60,7 +64,7 @@
 								<td >{{detalle.serviceName}}</td>
 								<td >{{detalle.categoryName}}</td>
 								<td >{{detalle.cost}}</td>
-								<td><a :href="'/detalle/' + detalle.serviceDetailsId" class="btn btn-success">Detallle</a>
+								<td><a :href="'/detalle/' + detalle.serviceDetailsId +'/'+ id2" class="btn btn-success">Detallle</a>
 								</td>								
 							</tr>
 						</tbody>
@@ -81,7 +85,8 @@ export default {
 			detalles:null,
 			busqueda:{
 				nombre:""
-			}
+			},
+			id2:this.$route.params.id
 
         }
     },
@@ -105,7 +110,31 @@ export default {
                         this.detalles=response.data
                     })
                     .catch(e=>console.log(e))
-        }
+		},
+		ordenarBajoCosto:function(){
+
+			var value = document.getElementById('servicioNombre').value;
+            if (value.lenght == 0) {
+                    axios.
+                get('https://localhost:5001/api/ServiceDetails/all/lowcost')
+                    .then(response=>{
+                        this.detalles=response.data
+                    })
+                    .catch(e=>console.log(e))
+            } 
+			
+			if (value.lenght != 0) {
+                   axios.
+                get('https://localhost:5001/api/ServiceDetails/'+this.busqueda.nombre+'/lowcostAndname')
+                    .then(response=>{
+                        this.detalles=response.data
+                    })
+                    .catch(e=>console.log(e))
+            } 
+			
+             
+           
+		}
     }
 
 }

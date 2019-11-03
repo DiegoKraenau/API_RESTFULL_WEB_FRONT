@@ -14,7 +14,7 @@
       <a class="nav-link" href="" v-on:click.prevent="post">Publicar Servicio</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link" href="#">Buscar Servicio</a>
+      <a class="nav-link" href="" v-on:click.prevent="post2">Buscar Servicio</a>
     </li>
      <li class="nav-item">
       <a class="nav-link" href="#">Buscar Personas</a>
@@ -34,6 +34,9 @@ export default {
  methods:{
         post:function(){
             window.location.href="/agregarServicio/"+this.$route.params.id
+        },
+        post2:function(){
+            window.location.href="/listarServicios/"+this.$route.params.id
         }
     }
 }

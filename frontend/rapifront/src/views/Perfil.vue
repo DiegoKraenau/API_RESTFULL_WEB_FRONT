@@ -1,0 +1,537 @@
+<template>
+<html lang="en">
+<head>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">RapiSolver</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Mi perfil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Publicar Servicio</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Buscar Servicio</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Buscar Personas</a>
+    </li>
+  </ul>
+</nav>
+<br>
+<br>
+<div class="container">
+  <div class="card">
+    <div class="front">
+      <div class="logo"><span></span></div>
+    </div>
+    <div class="back">
+      <h1>{{perfil.name}}<span>{{perfil.lastName}}</span></h1>
+      <ul id="ui1">
+        <li id="l1">{{perfil.phone}}</li>
+        <li id="l2">{{perfil.email}}</li>
+        <li id="l3">{{perfil.address}}</li>
+        </ul>
+    </div>
+    </div>
+  </div>
+
+  <br>
+
+
+<button class="tablink" @click="openPage('Contact', this, 'blue')" id="btn1">Recomendaciones</button>
+<button class="tablink" @click="openPage('About', this, 'orange')" id="btn2">Servicios</button>
+
+<div id="Contact" class="tabcontent">
+	<form id="formulario" >
+		<div class="form-group" >
+			<label >Descripcion:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese la descripcion del proveedor" v-model="recommendation.note"> 
+		</div>
+        <div class="form-group" >
+			<label >Puntaje:</label><br>
+           <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="recommendation.mark" >
+                <option selected>Seleccion el Puntaje</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+		</div>
+        <button v-on:click.prevent="post" class="btn btn-primary">Agregar</button>
+	</form>
+    <br>
+  <div class="card" v-for="recomendacion in recomendaciones" :key="recomendacion.recommendationId" id="cardRecomendacion">
+			<div class="card-header text-white bg-secondary">{{recomendacion.userName}}</div>
+			<div class="card-body">
+                <ul class="list-group" >
+					<li class="list-group-item">Puntaje:  {{recomendacion.mark}}</li>
+					<li class="list-group-item">Categoria:  {{recomendacion.note}}</li>
+				</ul>
+			</div>  
+	</div>
+</div>
+
+<div id="About" class="tabcontent">
+ <div class="card" id="cardServicio"  v-for="servicio in servicios" :key="servicio.servicioId">
+  <h1 id="h1name">{{servicio.name}}</h1>
+  <p class="price" >{{servicio.cost}}	S/</p>
+  <p class="description" >{{servicio.description}}</p>
+  <p><button>Contactar</button></p>
+</div>
+</div>
+
+
+	
+</body>
+</html>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+data(){
+        return{
+            perfil: { type: Object, default: () => ({}) },
+            servicios:null,
+            recomendaciones:null,
+            recommendation:{
+                note:"",
+                mark:"",
+                usuarioId:"",
+                customerId:""
+            }
+        }
+    },
+    mounted(){
+        this.getPerfil();
+        this.getServicios();
+        this.getRecomendaciones();
+    },
+    methods:{
+        getPerfil(){
+            axios.
+                get('https://localhost:5001/api/Suppliers/'+this.$route.params.id)
+                    .then(response=>{
+                        this.perfil=response.data
+                    })
+                    .catch(e=>console.log(e))
+        },
+        openPage:function(pageName,elmnt,color) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].style.backgroundColor = "";
+            }
+           document.getElementById(pageName).style.display = "block";
+           elmnt.style.backgroundColor = color;
+          },
+        getServicios(){
+            axios.
+                get('https://localhost:5001/api/Suppliers/'+this.$route.params.id+'/servicios')
+                    .then(response=>{
+                        this.servicios=response.data
+                    })
+                    .catch(e=>console.log(e))
+        }
+        ,
+        getRecomendaciones(){
+            axios.
+                get('https://localhost:5001/api/Recommendation/'+this.$route.params.id)
+                    .then(response=>{
+                        this.recomendaciones=response.data
+                    })
+                    .catch(e=>console.log(e))
+        },
+        post:function(){
+            this.$http.post('https://localhost:5001/api/Recommendation',{
+                 note:this.recommendation.note,
+                 mark:parseInt(this.recommendation.mark),
+                 supplierId:parseInt(this.$route.params.id),
+                 usuarioId:parseInt(this.$route.params.id2)
+
+            }).then(function(data){
+                alert ("Se ha registrado con exito.");
+                console.log(data);
+            });
+        }
+    }
+    
+}
+
+</script>
+
+<style>
+#formulario {
+	position: relative !important;
+	left: 35% !important;
+}
+#cardRecomendacion{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 590px;
+  height: 180px;
+  margin: auto;
+  text-align: left;
+  font-family: arial;
+}
+.description{
+  color: grey;
+  font-size: 15px;
+}
+#h1name{
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+#cardServicio {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  height: 215px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+  #btn1 {
+        position:absolute;
+        right: 25%;
+        
+    }
+   #btn2 {
+        position:absolute;
+        right: 50%;
+        
+    }
+    
+.container {
+  width: 600px;
+  height: 340px;
+  margin: 0 auto; 
+  position: relative;
+  -webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	perspective: 1000;
+	-webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d; 
+  transform-style: preserve-3d;
+  -webkit-perspective-origin: right;
+  -moz-perspective-origin: right;
+  perspective-origin: right;
+}
+.card {
+  width: 600px;
+  height: 340px;
+  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, .7), 0 17px 17px 0 rgba(0, 0, 0, .5);
+  position: relative; 
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transform-origin: 100% 0%;
+  -moz-transform-origin: 100% 0%;
+  -ms-transform-origin: 100% 0%;
+  transform-origin: 100% 0%;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d; 
+  transform-style: preserve-3d;
+  transition: .8s ease-in-out;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  background:
+  linear-gradient(45deg, #F5AF69 50%, #F4EED7 50.9%),
+  linear-gradient(90deg, #FC5135 50%, #4E203C 50%),
+  linear-gradient(-45deg, #F5AF69 50%, #E8D9A0 50.9%), 
+  linear-gradient(#FC5135 50%, #4E203C 50%),
+  linear-gradient(-45deg, #F5AF69 50%, #E8D9A0 50.9%),
+  linear-gradient(90deg, #FC5135 50%, #4E203C 50%),
+  linear-gradient(45deg, #FC5135 50%, #F5AF69 50.9%);
+  background-size: 50px 50px, 100px 50px, 50px 50px, 200px 100px, 50px 50px, 100px 50px, 50px 50px;
+  background-repeat: no-repeat;
+  background-position: 0 0, 50px 0px, 150px 0, 0 50px, 0 150px, 50px 150px, 150px 150px;
+}
+.logo:before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 140px;
+  height: 140px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background: linear-gradient(45deg, #F4EED7 50%, #E8D9A0 50%);
+}
+.logo:after {
+  content: "";
+  position: absolute;
+  top: 55px;
+  left: 55px;
+  width: 90px;
+  height: 90px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background: linear-gradient(45deg, #FC5135 50%, #4E203C 49.9%),
+  linear-gradient(-45deg, #F5AF69 50%, transparent 50%),
+  linear-gradient(#FC5135 50%, #FC5135 50%),
+  linear-gradient(-45deg, #4E203C 50%, transparent 50%);
+  background-size: 45px 45px;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 45px, 45px 45px, 45px 0;
+  border-radius: 0 50% 50% 50%;
+}
+.logo span {
+  display: block;
+  background: #4E203C;
+  width: 29px;
+  height: 32px;
+  position: absolute;
+  top: 99.5px;
+  left: 130px;
+  border-radius: 0 50% 50% 0;
+}
+.logo span:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #E8D9A0;
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  z-index: 2;
+}
+.front, .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.front {
+  display:-webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  z-index: 2;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.back {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  font-family: 'Arimo', sans-serif;
+}
+.container:hover .card {
+  -webkit-transform: rotateY(180deg) translateX(100%);
+  -moz-transform: rotateY(180deg) translateX(100%);
+  -ms-transform: rotateY(180deg) translateX(100%);
+  transform: rotateY(180deg) translateX(100%);
+  cursor: pointer;
+}
+#ui1 {
+  margin: 0;
+  width: 100%;
+  list-style: none;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  padding: 0 1%;
+}
+#ui1:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+h1 {
+  color: #FC5135;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 110px;
+  text-align: center;
+  font-size: 40px;
+}
+h1 span {
+  color: #4E203C;
+  display: block;
+  font-size: .45em;
+  letter-spacing: 3px;
+}
+h1 i {
+  font-style: normal;
+  text-transform: none;
+  font-family: 'Playfair Display', serif;
+}
+
+#l1 {
+  width: 31.3333333333%;
+  margin: 0 1%;
+  float: left;
+  padding: 10px;
+  border: 2px solid #FC5135;
+  border-radius: 4px;
+  position: relative;
+  text-align: center;
+  color: #4E203C;
+  content: "\f095";
+}
+#l1:before {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  margin-left: -15px;
+  width: 30px;
+  height:30px;
+  background: #FC5135;
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-family: FontAwesome;
+  content: "\f095";
+}
+#l2 {
+  width: 31.3333333333%;
+  margin: 0 1%;
+  float: left;
+  padding: 10px;
+  border: 2px solid #FC5135;
+  border-radius: 4px;
+  position: relative;
+  text-align: center;
+  color: #4E203C;
+  content: "\f003";
+}
+#l2:before {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  margin-left: -15px;
+  width: 30px;
+  height:30px;
+  background: #FC5135;
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-family: FontAwesome;
+  content: "\f003";
+}
+#l3 {
+  width: 31.3333333333%;
+  margin: 0 1%;
+  float: left;
+  padding: 10px;
+  border: 2px solid #FC5135;
+  border-radius: 4px;
+  position: relative;
+  text-align: center;
+  color: #4E203C;
+  content: "\f0c1";
+}
+#l3:before {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  margin-left: -15px;
+  width: 30px;
+  height:30px;
+  background: #FC5135;
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-family: FontAwesome;
+  content: "\f0c1";
+  
+}
+
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+
+#Contact {background-color: white;}
+#About {background-color: white;}
+
+
+</style>

@@ -1,0 +1,149 @@
+<template>
+  <html lang="en">
+<head>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="#" v-on:click.prevent="viñeta">RapiSolver</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="" v-on:click.prevent="post">Publicar Servicio</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href="" v-on:click.prevent="post2">Buscar Servicio</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Buscar Personas</a>
+    </li>
+  </ul>
+</nav>
+
+<input type="text" id="myInput"  v-on:keyup="myFunction" placeholder="Search for names..">
+
+<table id="myTable">
+  <tr class="header">
+    <th ></th>
+    <th >Nombre</th>
+    <th >Apellido</th>
+    <th >Email</th>
+    <th >Telefono</th>
+    <th >Detalle</th>
+  </tr>
+ <tbody>
+				<tr v-for="supplier in suppliers" :key="supplier.supplierId">
+                <td ><img src="../assets/img_avatar.png" alt="Avatar" width="50px" height="50px"></td>
+                <td >{{supplier.name}}</td>
+								<td >{{supplier.lastName}}</td>
+								<td >{{supplier.email}}</td>
+								<td >{{supplier.phone}}</td>
+                <td><a :href="'/perfil/' + supplier.supplierId +'/'+ id2" class="btn btn-primary">Ver perfil</a></td>														
+					</tr>
+</tbody>
+</table>
+
+
+
+
+</body>
+</html>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+  data(){
+        return{
+      suppliers:null,
+      id2:this.$route.params.id
+			
+        }
+    },
+    mounted(){
+        this.getSuppliers();
+    },
+  methods:{
+        post:function(){
+            window.location.href="/agregarServicio/"+this.$route.params.id
+        },
+        post2:function(){
+            window.location.href="/listarServicios/"+this.$route.params.id
+        },
+        viñeta:function(){
+            window.location.href="/Principal/"+this.$route.params.id
+        },
+        miperfil:function(){
+			window.location.href="/miPerfil/"+this.$route.params.id
+        },
+        myFunction:function(){
+           var input, filter, table, tr, td, i, txtValue;
+           input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+
+  
+          for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[1];
+              if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+            tr[i].style.display = "none";
+               }
+             }
+           }
+        } ,
+        getSuppliers(){
+            axios.
+                get('https://localhost:5001/api/Suppliers')
+                    .then(response=>{
+                        this.suppliers=response.data
+                    })
+                    .catch(e=>console.log(e))
+		}
+    }
+}
+
+</script>
+
+<style>
+#myInput {
+  background-image: url('/css/searchicon.png'); 
+  background-position: 10px 12px; 
+  background-repeat: no-repeat; 
+  width: 60%;
+  font-size: 16px; 
+  padding: 12px 20px 12px 40px; 
+  border: 1px solid #ddd; 
+  margin-bottom: 12px; 
+  margin-left: 330px; 
+  margin-top: 40px;
+  
+}
+
+#myTable {
+  border-collapse: collapse; 
+  width: 60%; 
+  border: 1px solid #ddd; 
+  font-size: 18px; 
+  margin: 0 auto
+}
+
+#myTable th, #myTable td {
+  text-align: left; 
+  padding: 12px; 
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>

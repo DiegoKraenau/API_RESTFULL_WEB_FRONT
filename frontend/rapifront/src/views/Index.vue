@@ -46,7 +46,7 @@
 				<ul class="navbar-nav text-uppercase ml-auto">
 
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						th:href="@{/supplier/sesion}">Iniciar Sesion</a></li>
+						href="/Inicio">Iniciar Sesion</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">Servicios</a></li>
 

@@ -81,6 +81,46 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Perfil.vue')
+  },
+  {
+    path: '/buscarPersonas/:id',
+    name: 'buscarPersonas',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/BuscarPersonas.vue')
+  },
+  {
+    path: '/miPerfil/:id',
+    name: 'miPerfil',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/MiPerfil.vue')
+  },
+  {
+    path: '/subscripcion/:id',
+    name: 'subscripcion',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Subscripcion.vue')
+  },
+  {
+    path: '/agregarReserva/:id/:id2',
+    name: 'agregarReserva',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AgregarReserva.vue')
+  },
+  {
+    path: '/modificarServicio/:id/:id2',
+    name: 'modificarServicio',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ModificarServicio.vue')
   }
 ]
 

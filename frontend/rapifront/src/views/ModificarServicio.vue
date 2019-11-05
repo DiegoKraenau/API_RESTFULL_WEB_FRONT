@@ -1,49 +1,49 @@
 <template>
-  <html lang="en">
+ <html lang="en">
 <head>
 </head>
 <body>
 
  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href=""  v-on:click.prevent="rapi">RapiSolver</a>
+    <a class="navbar-brand" href="#" v-on:click.prevent="rapi">RapiSolver</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="" >Publicar Servicio</a>
+      <a class="nav-link" href="#"  v-on:click.prevent="publicarServicio">Publicar Servicio</a>
     </li>
      <li class="nav-item">
       <a class="nav-link" href="" v-on:click.prevent="buscarServicio">Buscar Servicio</a>
     </li>
      <li class="nav-item">
-       <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Personas</a>
+      <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Personas</a>
     </li>
   </ul>
 </nav>
 
-<div id="labelCrearUsuario"><h2>Registro Servicio</h2></div><br>
-	<form id="formulario" >
+<div id="labelCrearUsuario"><h2>Editar Servicio</h2></div><br>
+<form id="formulario" >
 		<div class="form-group" >
-			<label >Nombre:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese nombre del servicio" v-model="servicio.name"> 
+			<label >Nombre:</label> <input  type="text" id="lbl1" class="form-control col-lg-3 col-md-3 col-xs-12"  placeholder="Ingrese nombre del servicio"  v-model="servicio.name"> 
 		</div>
 		<div class="form-group" >
-			<label >Descripcion:</label> <br><textarea  class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="servicio.description">Escribe aquí tus comentarios</textarea>   
+			<label >Descripcion:</label> <br><textarea id="lbl2" class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="servicio.description">Escribe aquí tus comentarios</textarea>   
 		</div>
 		<div class="form-group" >
-			<label >Costo:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese el costo del servicio" v-model="servicio.cost" > 
+			<label >Costo:</label> <input type="text" id="lbl3" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese el costo del servicio" v-model="servicio.cost" > 
 		</div>
         <div class="form-group" >
 			<label >Categoria:</label><br>
            <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="servicio.categoryName">
                 <option selected >Seleccion la categoria</option>
-                <option v-for="categoria in categorias" :key="categoria.serviceCategoryId">{{categoria.categoryName}}</option>
+                <option  v-for="categoria in categorias" :key="categoria.serviceCategoryId">{{categoria.categoryName}}</option>
             </select>
 		</div>
 		<div class="form-group" >
 			
 		</div>
-         <button v-on:click.prevent="post" class="btn btn-primary">Agregar</button>
+         <button v-on:click.prevent="edit" class="btn btn-primary">Editar</button>
 	</form>
 
 
@@ -54,7 +54,7 @@
 <script>
 import axios from 'axios'
 export default {
- data(){
+  data(){
         return{
             servicio:{
                  name: "",
@@ -63,23 +63,14 @@ export default {
                  categoryName: ""
             },
             categorias:null,
-            supplier:null,
-            servicioDetalle:{
-                supplierId: "",
-                usuarioId: "",
-                serviceName: "",
-                description: "",
-                cost: "",
-                categoryName: ""
-            },
-            usuario:null
+            serviciobefore:null
 
         }
     },
     mounted(){
         this.getCategorias();
-        this.getSupplier();
-        this.getUsuario();
+        this.getServicio();
+        
     },
     methods:{
         getCategorias(){
@@ -91,26 +82,19 @@ export default {
                     })
                     .catch(e=>console.log(e))
         },
-        getSupplier(){
+        getServicio(){
             axios.
-                get("https://localhost:5001/api/Suppliers/searchOrginalByUserId/"+this.$route.params.id)
+                get('https://localhost:5001/api/ServiceDetails/'+this.$route.params.id2)
                     .then(response=>{
-                        this.supplier=response.data
+                        this.serviciobefore=response.data;
+                        console.log(response.data)
+                        document.getElementById('lbl1').value =response.data[0].serviceName;
+                        document.getElementById('lbl2').value =response.data[0].description;
+                        document.getElementById('lbl3').value =response.data[0].cost;
+                      
                     })
                     .catch(e=>console.log(e))
-        },
-        getUsuario(){
-            axios.
-                get("https://localhost:5001/api/Usuarios/"+this.$route.params.id)
-                    .then(response=>{
-                        this.usuario=response.data;
-                        if(this.usuario.usuarioId==1){
-                            alert("Usted no tiene una subscripcion para poder publicar servicios");
-                            window.location.href="/Principal/"+this.$route.params.id
-                        }
-                        
-                    })
-                    .catch(e=>console.log(e))
+             
         },
         post:function(){
             this.$http.post('https://localhost:5001/api/ServiceDetails',{
@@ -136,8 +120,23 @@ export default {
         },
         miperfil:function(){
 			window.location.href="/miPerfil/"+this.$route.params.id
-        }
+        },
+        edit:function(){
+             this.$http.put('https://localhost:5001/api/Servicios',{
+                servicioId: parseInt(this.$route.params.id2),
+                name: this.servicio.name,
+                description: this.servicio.description,
+                cost: this.servicio.cost,
+                categoryName:this.servicio.categoryName
+
+            }).then(function(data){
+                alert ("Se ha editado con exito.");
+                window.location.href="/miPerfil/"+this.$route.params.id
+                console.log(data);
+            });
     }
+    }
+        
 }
 </script>
 

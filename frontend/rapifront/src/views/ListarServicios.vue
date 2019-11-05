@@ -6,19 +6,19 @@
 	
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="#">RapiSolver</a>
+    <a class="navbar-brand" href="" v-on:click.prevent="rapi">RapiSolver</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Mi perfil</a>
+      <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Publicar Servicio</a>
+      <a class="nav-link" href="#"  v-on:click.prevent="publicarServicio">Publicar Servicio</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link" href="#">Buscar Servicio</a>
+      <a class="nav-link" href="" v-on:click.prevent="buscarServicio">Buscar Servicio</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link" href="#">Buscar Personas</a>
+      <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Personas</a>
     </li>
   </ul>
 </nav>
@@ -131,10 +131,22 @@ export default {
                     })
                     .catch(e=>console.log(e))
             } 
-			
-             
-           
-		}
+        },
+        rapi:function(){
+			window.location.href="/Principal/"+this.$route.params.id
+        },
+        buscarServicio:function(){
+			window.location.href="/listarServicios/"+this.$route.params.id
+        },
+        publicarServicio:function(){
+			window.location.href="/agregarServicio/"+this.$route.params.id
+        },
+        buscarPersonas:function(){
+			window.location.href="/buscarPersonas/"+this.$route.params.id
+		},
+        miperfil:function(){
+			window.location.href="/miPerfil/"+this.$route.params.id
+        }
     }
 
 }

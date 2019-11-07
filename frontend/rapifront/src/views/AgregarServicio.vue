@@ -84,7 +84,7 @@ export default {
     methods:{
         getCategorias(){
             axios.
-                get('https://localhost:5001/api/ServiceCategories')
+                get('https://localhost:5001/api/servicecategories')
                     .then(response=>{
                         this.categorias=response.data;
                         
@@ -93,7 +93,7 @@ export default {
         },
         getSupplier(){
             axios.
-                get("https://localhost:5001/api/Suppliers/searchOrginalByUserId/"+this.$route.params.id)
+                get("https://localhost:5001/api/suppliers/searchOrginalByUserId/"+this.$route.params.id)
                     .then(response=>{
                         this.supplier=response.data
                     })
@@ -101,7 +101,7 @@ export default {
         },
         getUsuario(){
             axios.
-                get("https://localhost:5001/api/Usuarios/"+this.$route.params.id)
+                get("https://localhost:5001/api/rapiusers/"+this.$route.params.id)
                     .then(response=>{
                         this.usuario=response.data;
                         if(this.usuario.usuarioId==1){
@@ -113,7 +113,7 @@ export default {
                     .catch(e=>console.log(e))
         },
         post:function(){
-            this.$http.post('https://localhost:5001/api/ServiceDetails',{
+            this.$http.post('https://localhost:5001/api/servicedetails',{
                 supplierId: parseInt(this.supplier.supplierId),
                 serviceName: this.servicio.name,
                 description: this.servicio.description,

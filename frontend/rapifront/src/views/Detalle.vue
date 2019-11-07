@@ -83,7 +83,7 @@ export default {
     methods:{
         getDetalles(){
             axios.
-                get("https://localhost:5001/api/ServiceDetails/"+this.$route.params.id)
+                get("https://localhost:5001/api/servicedetails/"+this.$route.params.id)
                     .then(response=>{
                         this.detalles=response.data
                     })

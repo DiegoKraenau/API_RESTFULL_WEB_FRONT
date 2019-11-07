@@ -113,7 +113,7 @@ data(){
     methods:{
         getPerfil(){
             axios.
-                get('https://localhost:5001/api/Suppliers/'+this.$route.params.id)
+                get('https://localhost:5001/api/suppliers/'+this.$route.params.id)
                     .then(response=>{
                         this.perfil=response.data
                     })
@@ -134,7 +134,7 @@ data(){
           },
         getServicios(){
             axios.
-                get('https://localhost:5001/api/Suppliers/'+this.$route.params.id+'/servicios')
+                get('https://localhost:5001/api/suppliers/'+this.$route.params.id+'/servicios')
                     .then(response=>{
                         this.servicios=response.data
                     })
@@ -143,14 +143,14 @@ data(){
         ,
         getRecomendaciones(){
             axios.
-                get('https://localhost:5001/api/Recommendation/'+this.$route.params.id)
+                get('https://localhost:5001/api/recommendations/'+this.$route.params.id)
                     .then(response=>{
                         this.recomendaciones=response.data
                     })
                     .catch(e=>console.log(e))
         },
         post:function(){
-            this.$http.post('https://localhost:5001/api/Recommendation',{
+            this.$http.post('https://localhost:5001/api/recommendations',{
                  note:this.recommendation.note,
                  mark:parseInt(this.recommendation.mark),
                  supplierId:parseInt(this.$route.params.id),

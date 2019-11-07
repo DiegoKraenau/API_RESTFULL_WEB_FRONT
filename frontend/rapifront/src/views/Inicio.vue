@@ -68,7 +68,7 @@ data(){
     methods:{
         getUsuarios(){
             axios.
-                get('https://localhost:5001/api/Usuarios')
+                get('https://localhost:5001/api/rapiusers')
                     .then(response=>{
                         this.usuarios=response.data
                     })

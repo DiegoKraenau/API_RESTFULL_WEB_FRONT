@@ -100,7 +100,7 @@ export default {
         } ,
         getSuppliers(){
             axios.
-                get('https://localhost:5001/api/Suppliers')
+                get('https://localhost:5001/api/suppliers')
                     .then(response=>{
                         this.suppliers=response.data
                     })

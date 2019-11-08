@@ -76,7 +76,7 @@ export default {
         },
         getDetalles(){
             axios.
-                get("https://localhost:5001/api/ServiceDetails/searchByID/"+this.$route.params.id)
+                get("https://localhost:5001/api/servicedetails/searchByID/"+this.$route.params.id)
                     .then(response=>{
                         this.detalles=response.data;                        
                     })
@@ -84,7 +84,7 @@ export default {
         },
         post:function(){
             
-            this.$http.post('https://localhost:5001/api/Reservations',{
+            this.$http.post('https://localhost:5001/api/reservations',{
                 servicioId: parseInt(this.detalles.servicioId),
                 usuarioId: parseInt(this.$route.params.id2),
                 note: this.reserva.note,

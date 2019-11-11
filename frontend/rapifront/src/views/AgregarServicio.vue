@@ -104,7 +104,7 @@ export default {
                 get("https://localhost:5001/api/Usuarios/"+this.$route.params.id)
                     .then(response=>{
                         this.usuario=response.data;
-                        if(this.usuario.usuarioId==1){
+                        if(this.usuario.rolId==1){
                             alert("Usted no tiene una subscripcion para poder publicar servicios");
                             window.location.href="/Principal/"+this.$route.params.id
                         }

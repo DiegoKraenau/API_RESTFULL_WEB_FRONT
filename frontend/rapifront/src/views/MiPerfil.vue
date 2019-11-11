@@ -69,7 +69,7 @@
         <section class="main">
             <div class="box">
                 <p class="title">
-                    <i class="fa fa-graduation-cap"></i>
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     Servicios
                 </p>
                 <p class="padd-top" id="mensaje"></p>
@@ -99,7 +99,7 @@
             </div>  
             <div class="box">
                 <p class="title">
-                    <i class="fa fa-graduation-cap"></i>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
                     Reservas
                 </p>
                 <p class="padd-top" id="reservaMensaje"></p>

@@ -63,7 +63,7 @@
 								<td >{{detalle.serviceDetailsId}}</td>
 								<td >{{detalle.serviceName}}</td>
 								<td >{{detalle.categoryName}}</td>
-								<td >{{detalle.cost}}</td>
+								<td >{{detalle.cost}} S/</td>
 								<td><a :href="'/detalle/' + detalle.serviceDetailsId +'/'+ id2" class="btn btn-success">Detallle</a>
 								</td>								
 							</tr>

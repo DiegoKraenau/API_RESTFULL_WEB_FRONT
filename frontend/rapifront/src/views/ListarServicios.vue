@@ -96,7 +96,7 @@ export default {
     methods:{
         getDetalles(){
             axios.
-                get('https://localhost:5001/api/ServiceDetails')
+                get('https://localhost:5001/api/servicedetails')
                     .then(response=>{
                         this.detalles=response.data
                     })
@@ -105,7 +105,7 @@ export default {
 		buscar:function(){
 			this.detalles=null;
             axios.
-                get('https://localhost:5001/api/ServiceDetails/'+this.busqueda.nombre+'/servicios')
+                get('https://localhost:5001/api/servicedetails/'+this.busqueda.nombre+'/servicios')
                     .then(response=>{
                         this.detalles=response.data
                     })
@@ -116,7 +116,7 @@ export default {
 			var value = document.getElementById('servicioNombre').value;
             if (value.lenght == 0) {
                     axios.
-                get('https://localhost:5001/api/ServiceDetails/all/lowcost')
+                get('https://localhost:5001/api/servicedetails/all/lowcost')
                     .then(response=>{
                         this.detalles=response.data
                     })
@@ -125,7 +125,7 @@ export default {
 			
 			if (value.lenght != 0) {
                    axios.
-                get('https://localhost:5001/api/ServiceDetails/'+this.busqueda.nombre+'/lowcostAndname')
+                get('https://localhost:5001/api/servicedetails/'+this.busqueda.nombre+'/lowcostAndname')
                     .then(response=>{
                         this.detalles=response.data
                     })

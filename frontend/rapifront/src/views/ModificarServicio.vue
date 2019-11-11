@@ -75,7 +75,7 @@ export default {
     methods:{
         getCategorias(){
             axios.
-                get('https://localhost:5001/api/ServiceCategories')
+                get('https://localhost:5001/api/servicecategories')
                     .then(response=>{
                         this.categorias=response.data;
                         
@@ -84,7 +84,7 @@ export default {
         },
         getServicio(){
             axios.
-                get('https://localhost:5001/api/ServiceDetails/'+this.$route.params.id2)
+                get('https://localhost:5001/api/servicedetails/'+this.$route.params.id2)
                     .then(response=>{
                         this.serviciobefore=response.data;
                         console.log(response.data)
@@ -97,7 +97,7 @@ export default {
              
         },
         post:function(){
-            this.$http.post('https://localhost:5001/api/ServiceDetails',{
+            this.$http.post('https://localhost:5001/api/servicedetails',{
                 supplierId: parseInt(this.supplier.supplierId),
                 serviceName: this.servicio.name,
                 description: this.servicio.description,
@@ -122,7 +122,7 @@ export default {
 			window.location.href="/miPerfil/"+this.$route.params.id
         },
         edit:function(){
-             this.$http.put('https://localhost:5001/api/Servicios',{
+             this.$http.put('https://localhost:5001/api/rapiservices',{
                 servicioId: parseInt(this.$route.params.id2),
                 name: this.servicio.name,
                 description: this.servicio.description,

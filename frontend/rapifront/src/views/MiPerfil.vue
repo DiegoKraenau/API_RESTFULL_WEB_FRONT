@@ -176,7 +176,7 @@ export default {
         },
         deleteReservation:function(num){
 			axios.
-                delete('https://localhost:5001/api/Reservations/'+num)
+                delete('https://localhost:5001/api/reservations/'+num)
                     .then(response=>{
                        console.log(response.data);
                         
@@ -189,7 +189,7 @@ export default {
     },
     getReservas(){
             axios.
-                get('https://localhost:5001/api/Reservations/searchByUserId/'+this.$route.params.id)
+                get('https://localhost:5001/api/reservations/searchByUserId/'+this.$route.params.id)
                     .then(response=>{
                        console.log(response.data);
                         this.reservas=response.data
@@ -201,12 +201,12 @@ export default {
         },
         getUsuario(){
             axios.
-                get('https://localhost:5001/api/Usuarios/'+this.$route.params.id)
+                get('https://localhost:5001/api/rapiusers/'+this.$route.params.id)
                     .then(response=>{
                         this.usuario.rolId=response.data.rolId;
                         if (this.usuario.rolId == 1) {
                              axios.
-                             get("https://localhost:5001/api/Customers/searchByUserId/"+this.$route.params.id)
+                             get("https://localhost:5001/api/customers/searchByUserId/"+this.$route.params.id)
                             .then(response=>{
                               this.personas=response.data;
                             
@@ -218,12 +218,12 @@ export default {
                           if (this.usuario.rolId == 2) {
                               //Para obtener el supplier
                              axios.
-                             get("https://localhost:5001/api/Suppliers/searchByUserId/"+this.$route.params.id)
+                             get("https://localhost:5001/api/suppliers/searchByUserId/"+this.$route.params.id)
                             .then(response=>{
                                  this.personas=response.data;
                                  //Para los servicios
                                  axios.
-                             get("https://localhost:5001/api/Servicios/searchByUserId/"+this.$route.params.id)
+                             get("https://localhost:5001/api/rapiservices/searchByUserId/"+this.$route.params.id)
                             .then(response=>{
                                 console.log(response.data);
                               this.servicios=response.data;

@@ -206,6 +206,50 @@
 	</section>
 
 
+    <section>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 order-lg-2">
+            <div class="p-5">
+                <h1><span class="grey">1</span>Conoce más sobre la Aplicación Web RapiSolver.</h1>
+            </div>
+          </div>
+          <div class="col-lg-6 order-lg-1">
+            <div class="p-5">
+              <h2 class="display-4">About the Product</h2>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/vY1JQI8J8AQ" allowfullscreen></iframe>
+              </div>
+              <a href="https://www.youtube.com/watch?v=vY1JQI8J8AQ&feature=youtu.be"><p>About the Product</p></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="p-5">
+                  <h1><span class="grey">2</span>Conoce más sobre nuestro grupo de trabajo.</h1>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <h2 class="display-4">About The Team</h2>
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/Av6a-7RSBhI" allowfullscreen></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=Av6a-7RSBhI&feature=youtu.be"><p>About The Team</p></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
 
 
 	<!-- Team -->
@@ -281,6 +325,12 @@
 			</div>
 		</div>
 	</section>
+
+
+
+
+
+
 
 	<!-- Clients -->
 
@@ -1013,6 +1063,21 @@ ul.social-buttons li a {
 
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #fed136;
+}
+
+
+span.grey {
+  background: #cccccc;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em; 
 }
 
 

@@ -118,7 +118,7 @@
 								<td >{{servicio.categoryName}}</td>
 								<td >{{servicio.cost}}</td>
 								<td><a href="#" class="btn btn-success" v-on:click.prevent="modificar(servicio.servicioId)">Modificar</a></td>
-                                <td><a href="#" class="btn btn-danger">Eliminar</a></td>								
+                                <td><a href="#" class="btn btn-danger" v-on:click.prevent="eliminar(servicio.servicioId)">Eliminar</a></td>								
 							</tr>
 						</tbody>
 					</table>
@@ -149,6 +149,7 @@
                         <td >{{reserva.usuarioName}}</td>
 								<td >{{reserva.servicioName}}</td>
 								<td >{{reserva.fecha}}</td>
+     
                         <td><a href="#" class="btn btn-danger" v-on:click.prevent="deleteReservation(reserva.reservationId)">Cancelar</a></td>								
 							</tr>
 						</tbody>
@@ -200,6 +201,16 @@ export default {
         },
         modificar:function(num){
 			window.location.href="/modificarServicio/"+this.$route.params.id+"/"+num
+        },
+        eliminar:function(num){
+			axios.
+                delete('https://localhost:5001/api/rapiservices/'+num)
+                    .then(response=>{
+                       console.log(response.data);
+                     
+                    })
+                    .catch(e=>console.log(e))
+         window.location.href="/miPerfil/"+this.$route.params.id 
         },
         salir:function(){
          window.location.href="/Inicio"

@@ -193,8 +193,9 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     margin-right: 1rem;
-    font-size: 1.25rem;
+    font-size: 2rem;
     line-height: inherit;
     white-space: nowrap;
+    margin-top:-10px;
 }
 </style>

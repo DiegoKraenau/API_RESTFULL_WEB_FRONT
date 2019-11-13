@@ -45,14 +45,17 @@
         </div>
   
 </nav>
+ <div id="mensaje2" class="alert alert-success " style="display: none">
+            <strong> <p class="padd-top" id="mensaje"></p></strong>
+</div>
 
 <div id="labelCrearUsuario"><h2>Editar Servicio</h2></div><br>
-<form id="formulario" >
+<form id="formulario" v-on:submit.prevent="edit" >
 		<div class="form-group" >
-			<label >Nombre:</label> <input  type="text" id="lbl1" class="form-control col-lg-3 col-md-3 col-xs-12"  placeholder="Ingrese nombre del servicio"  v-model="servicio.name"> 
+			<label >Nombre:</label> <input  type="text" id="lbl1" class="form-control col-lg-3 col-md-3 col-xs-12"  placeholder="Ingrese nombre del servicio"  v-model="servicio.name" minlength="5" maxlength="40" required pattern="[A-Za-z]+"> 
 		</div>
 		<div class="form-group" >
-			<label >Descripcion:</label> <br><textarea id="lbl2" class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="servicio.description">Escribe aquí tus comentarios</textarea>   
+			<label >Descripcion:</label> <br><textarea id="lbl2" class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="servicio.description" minlength="5" maxlength="100" required pattern="[A-Za-z]+">Escribe aquí tus comentarios</textarea>   
 		</div>
 		<div class="form-group" >
 			<label >Costo:</label> <input type="text" id="lbl3" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese el costo del servicio" v-model="servicio.cost" > 
@@ -67,7 +70,7 @@
 		<div class="form-group" >
 			
 		</div>
-         <button v-on:click.prevent="edit" class="btn btn-primary">Editar</button>
+         <button type="submit" class="btn btn-primary">Editar</button>
 	</form>
 
 
@@ -157,8 +160,10 @@ export default {
                 categoryName:this.servicio.categoryName
 
             }).then(function(data){
-                alert ("Se ha editado con exito.");
-                window.location.href="/miPerfil/"+this.$route.params.id
+                document.getElementById('mensaje2').style.display ='block'
+                document.getElementById('mensaje').innerHTML = 'Se actualizo su servicio con exito.';
+                document.getElementById("formulario").reset();
+                console.log(data)
                 console.log(data);
             });
     }

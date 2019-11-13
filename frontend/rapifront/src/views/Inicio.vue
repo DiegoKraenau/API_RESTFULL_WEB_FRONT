@@ -21,7 +21,7 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" id="logo" href="http://localhost:8080/Inicio">RapiSolver</a>
+  <a class="navbar-brand" id="logo" href="http://localhost:8080">RapiSolver</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="http://localhost:8080/Inicio">Inicio Sesion</a>

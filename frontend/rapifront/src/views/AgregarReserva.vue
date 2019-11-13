@@ -46,7 +46,12 @@
   
 </nav>
 
-<div id="labelCrearUsuario"><h2>Registro Reserva</h2></div><br>
+<div id="mensaje2" class="alert alert-success " style="display: none">
+            <strong> <p class="padd-top" id="mensaje"></p></strong>
+</div>
+
+
+<div id="labelCrearUsuario"><h2>Registrar Reserva</h2></div><br>
 <form id="formulario" >
 		<div class="form-group" >
 			<label >Descripcion:</label> <br><textarea  class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="reserva.note">Escribe aquí tus comentarios</textarea>   
@@ -116,7 +121,9 @@ export default {
                 fecha: this.reserva.fecha
 
             }).then(function(data){
-                alert ("Se ha registrado con exito.");
+                document.getElementById('mensaje2').style.display ='block'
+                document.getElementById('mensaje').innerHTML = 'Se agregó la reserva con exito.';
+                document.getElementById("formulario").reset();
                 console.log(data);
             });
         },

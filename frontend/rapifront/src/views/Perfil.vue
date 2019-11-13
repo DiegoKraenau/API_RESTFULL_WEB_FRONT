@@ -45,6 +45,10 @@
   
 </nav>
 
+ <div id="mensaje2" class="alert alert-success " style="display: none">
+            <strong> <p class="padd-top" id="mensaje"></p></strong>
+</div>
+
 
 <br>
 <br>
@@ -257,8 +261,11 @@ data(){
                  usuarioId:parseInt(this.$route.params.id2)
 
             }).then(function(data){
-                alert ("Se ha registrado con exito.");
-                console.log(data);
+                document.getElementById('mensaje2').style.display ='block'
+                document.getElementById('mensaje').innerHTML = 'Su recomendacion se agregó con exito.';
+                document.getElementById("formulario").reset();
+                console.log(data)
+              
             });
         },
         rapi:function(){

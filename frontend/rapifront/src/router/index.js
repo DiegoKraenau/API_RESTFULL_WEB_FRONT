@@ -129,6 +129,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/EditarPerfil.vue')
+  },
+  {
+    path: '/modificarReserva/:id/:id2',
+    name: 'modificarReserva',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ModificarReserva.vue')
   }
 ]
 

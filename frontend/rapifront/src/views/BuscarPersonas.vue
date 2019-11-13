@@ -1,28 +1,52 @@
 <template>
   <html lang="en">
 <head>
+  <!-- Custom fonts for this template -->
+<link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+<!-- Custom styles for this template -->
+<link href="../static/css/agency.min.css" rel="stylesheet">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#" v-on:click.prevent="viñeta">RapiSolver</a>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="post">Publicar Servicio</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="post2">Buscar Servicio</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href="#">Buscar Personas</a>
-    </li>
-  </ul>
+    <a class="navbar-brand" id="logo" href="#" v-on:click.prevent="viñeta">RapiSolver</a>
+     <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                   <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#"  v-on:click.prevent="post">Publicar Servicio</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="" v-on:click.prevent="post2">Buscar Servicio</a>
+                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="" v-on:click.prevent="">Buscar Proveedor</a>
+               </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                </li>
+            </ul>
+        </div>
+  
 </nav>
 
-<input type="text" id="myInput"  v-on:keyup="myFunction" placeholder="Search for names..">
+<input type="text" id="myInput"  v-on:keyup="myFunction" placeholder="Buscar por nombres">
 
 <table id="myTable">
   <tr class="header">
@@ -105,7 +129,10 @@ export default {
                         this.suppliers=response.data
                     })
                     .catch(e=>console.log(e))
-		}
+    },
+    salir:function(){
+         window.location.href="/Inicio"
+        }
     }
 }
 
@@ -121,7 +148,7 @@ export default {
   padding: 12px 20px 12px 40px; 
   border: 1px solid #ddd; 
   margin-bottom: 12px; 
-  margin-left: 330px; 
+  margin-left: 350px; 
   margin-top: 40px;
   
 }
@@ -145,5 +172,18 @@ export default {
 
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
+}
+#logo {
+    color: #fed136;
+    font-family: 'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+#logo {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
 }
 </style>

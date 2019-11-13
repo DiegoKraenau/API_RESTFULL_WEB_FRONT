@@ -1,11 +1,27 @@
 <template>
 <html lang="en">
 <head>
+    <!-- Custom fonts for this template -->
+<link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+<!-- Custom styles for this template -->
+<link href="../static/css/agency.min.css" rel="stylesheet">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="http://localhost:8080/Inicio">RapiSolver</a>
+  <a class="navbar-brand" id="logo" href="http://localhost:8080/Inicio">RapiSolver</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="http://localhost:8080/Inicio">Inicio Sesion</a>
@@ -15,62 +31,27 @@
     </li>
   </ul>
 </nav>
-
+    <div id="mensaje2" class="alert alert-success " style="display: none">
+            <strong> <p class="padd-top" id="mensaje"></p></strong>
+    </div>
     <div id="labelCrearUsuario"><h2>Registro de Usuario</h2></div><br>
-	<form id="formulario" >
+ 
+	<form id="formulario" v-on:submit.prevent="post" >
+        
 		<div class="form-group" >
-			<label >Nombre:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese Nombres" v-model="usuario.name"> 
-		</div>
-		<div class="form-group" >
-			<label >Apellido:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese Apellidos" v-model="usuario.lastName">  
-		</div>
-		<div class="form-group" >
-			<label >Email:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese un email" v-model="usuario.email"> 
-		</div>
-        <div class="form-group" >
-			<label >Contraseña::</label> <input type="password" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese una contraseña" v-model="usuario.contraseña"> 
+			<label >Nombre:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese Nombres" v-model="usuario.name" minlength="5" maxlength="40" required pattern="[A-Za-z]+"> 
 		</div>
 		<div class="form-group" >
-			<label >Telefono:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese un telefono" v-model="usuario.phone"> 
+			<label >Apellido:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese Apellidos" v-model="usuario.lastName"  minlength="5" maxlength="40" required pattern="[A-Za-z]+">  
+		</div>
+		<div class="form-group" >
+			<label >Email:</label> <input type="email" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese un email" v-model="usuario.email"> 
 		</div>
         <div class="form-group" >
-			<label >Edad:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese su edad" v-model="usuario.age"> 
-		</div>
-       <div class="form-group" >
-			<label >Sexo:</label><br>
-           <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.genger">
-                <option selected>Seleccion el sexo</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-                <option value="Ambos">Ambos</option>
-            </select>
-		</div>
-        <div class="form-group" >
-			<label >Pais:</label><br>
-           <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.country">
-                <option selected>Seleccion el Pais</option>
-                <option value="Perú">Perú</option>
-            </select>
-		</div>
-           <div class="form-group" >
-			<label >Departamento:</label><br>
-           <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.state">
-                <option selected>Seleccion el Departamento</option>
-                <option value="Lima">Lima</option>
-            </select>
-		</div>
-        <div class="form-group" >
-			<label >Distrito:</label><br>
-           <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.city">
-                <option selected>Seleccion el Distrito</option>
-                <option value="Lima">Lima</option>
-            </select>
-		</div>
-         <div class="form-group" >
-			<label >Direccion:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese su direccion" v-model="usuario.address"> 
+			<label >Contraseña::</label> <input type="password" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese una contraseña" v-model="usuario.contraseña" minlength="5" maxlength="40" > 
 		</div>
 
-        <button v-on:click.prevent="post" class="btn btn-primary">Agregar</button>
+        <button  tyoe="submit"  class="btn btn-primary">Agregar</button>
 	</form>
 
 
@@ -116,9 +97,14 @@ export default {
                  contraseña:this.usuario.contraseña
 
             }).then(function(data){
-                alert ("Se ha registrado con exito.");
+                document.getElementById('mensaje2').style.display ='block'
+                 document.getElementById('mensaje').innerHTML = 'Se acaba de registrar con exito , si desea inicie sesion.';
+                 document.getElementById("formulario").reset();
                 console.log(data);
             });
+        },
+        salir:function(){
+         window.location.href="/Inicio"
         }
     }
 
@@ -143,5 +129,17 @@ export default {
 	position: relative !important;
 	left: 30% !important;
 }
-
+#logo {
+    color: #fed136;
+    font-family: 'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+#logo {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
 </style>

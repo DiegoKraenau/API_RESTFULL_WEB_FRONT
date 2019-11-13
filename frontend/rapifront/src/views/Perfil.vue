@@ -1,25 +1,51 @@
 <template>
 <html lang="en">
 <head>
+  <!-- Custom fonts for this template -->
+<link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+<!-- Custom styles for this template -->
+<link href="../static/css/agency.min.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="" v-on:click.prevent="rapi">RapiSolver</a>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href=""  v-on:click.prevent="publicarServicio">Publicar Servicio</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="buscarServicio">Buscar Servicio</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Personas</a>
-    </li>
-  </ul>
+    <a class="navbar-brand" id="logo" href="#" v-on:click.prevent="rapi">RapiSolver</a>
+     <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                   <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#"  v-on:click.prevent="publicarServicio">Publicar Servicio</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="" v-on:click.prevent="buscarServicio">Buscar Servicio</a>
+                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Proveedor</a>
+               </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                </li>
+            </ul>
+        </div>
+  
 </nav>
+
+
 <br>
 <br>
 <div class="container">
@@ -46,32 +72,99 @@
 
 <div id="Contact" class="tabcontent">
 	<form id="formulario" >
-		<div class="form-group" >
-			<label >Descripcion:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese la descripcion del proveedor" v-model="recommendation.note"> 
-		</div>
+		
         <div class="form-group" >
-			<label >Puntaje:</label><br>
-           <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="recommendation.mark" >
-                <option selected>Seleccion el Puntaje</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+          <div class="container-fluid gedf-wrapper" id="grupo3">
+        <div class="row">
+           
+            <div class="col-md-2 gedf-main">
+
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Crea una recomendacion</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                <div class="form-group">
+                                    <label class="sr-only" for="message">post</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="Escribe tu comentario." v-model="recommendation.note"></textarea>
+                                </div>
+                              <div class="form-group">
+                                <label >Puntaje:</label><br>
+                                   <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="recommendation.mark" >
+                                   <option selected>Seleccion el Puntaje</option>
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                  <option value="4">4</option>
+                                   <option value="5">5</option>
+                                 </select>
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                        <div class="btn-toolbar justify-content-between">
+                            <div class="btn-group">
+                                <button v-on:click.prevent="post" class="btn btn-primary">Agregar</button>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                <!-- Post /////-->
+                <br>
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card" v-for="recomendacion in recomendaciones" :key="recomendacion.recommendationId" id="cardRecomendacion" >
+                    <div class="card-header" >
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">{{recomendacion.userName}}</div>
+                                    <div class="h7 text-muted">Puntaje:  {{recomendacion.mark}}</div>
+                                </div>
+                            </div>
+                            <div>
+                              
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        
+                        <a class="card-link" href="#">
+                            <h5 class="card-title"> Comentario:{{recomendacion.note}}</h5>
+                        </a>
+
+                       
+                    </div>
+                   
+                </div>
+
+ 
+
+
+            </div>
+           
+        </div>
+    </div>
+		
 		</div>
-        <button v-on:click.prevent="post" class="btn btn-primary">Agregar</button>
+        
+        
 	</form>
     <br>
-  <div class="card" v-for="recomendacion in recomendaciones" :key="recomendacion.recommendationId" id="cardRecomendacion">
-			<div class="card-header text-white bg-secondary">{{recomendacion.userName}}</div>
-			<div class="card-body">
-                <ul class="list-group" >
-					<li class="list-group-item">Puntaje:  {{recomendacion.mark}}</li>
-					<li class="list-group-item">Categoria:  {{recomendacion.note}}</li>
-				</ul>
-			</div>  
-	</div>
+
 </div>
 
 <div id="About" class="tabcontent">
@@ -83,6 +176,10 @@
 </div>
 </div>
 
+
+
+
+    
 
 	
 </body>
@@ -118,6 +215,9 @@ data(){
                         this.perfil=response.data
                     })
                     .catch(e=>console.log(e))
+        },
+        salir:function(){
+         window.location.href="/Inicio"
         },
         openPage:function(pageName,elmnt,color) {
           var i, tabcontent, tablinks;
@@ -548,5 +648,23 @@ body, html {
 #Contact {background-color: white;}
 #About {background-color: white;}
 
+#logo {
+    color: #fed136;
+    font-family: 'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+#logo {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+#grupo3{
+    position:absolute;
+    left:-35px;
 
+
+}
 </style>

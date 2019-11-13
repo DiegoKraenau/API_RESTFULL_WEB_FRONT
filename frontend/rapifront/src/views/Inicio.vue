@@ -1,11 +1,27 @@
 <template>
 <html lang="en">
 <head>
+  <!-- Custom fonts for this template -->
+<link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+<!-- Custom styles for this template -->
+<link href="../static/css/agency.min.css" rel="stylesheet">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="http://localhost:8080/Inicio">RapiSolver</a>
+  <a class="navbar-brand" id="logo" href="http://localhost:8080/Inicio">RapiSolver</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="http://localhost:8080/Inicio">Inicio Sesion</a>
@@ -17,7 +33,9 @@
 </nav>
 
 
-
+<div id="mensaje2" class="alert alert-danger" role="alert" style="display: none">
+   <strong> <p class="padd-top" id="mensaje"></p></strong>
+</div>
 
 <div class="container">
     <div class="row">
@@ -84,11 +102,22 @@ data(){
 		},
 		post:function(){
 		var name=this.logeo.userName;
-		var contraseña=this.logeo.userPassword;
+    var contraseña=this.logeo.userPassword;
+    var num=0;
+    var codigo=0;
+    
         this.usuarios.forEach(function(element) {
-			
-             if ((element.userName == name)&& (element.userPassword == contraseña)) {window.location.href="Principal/"+element.usuarioId}	   
+             
+             if ((element.userName == name)&& (element.userPassword == contraseña)) {num=1;codigo=element.usuarioId}	   
          });
+         if (num==1) {
+           window.location.href="Principal/"+codigo
+         }
+         if (num==0) {
+           document.getElementById('mensaje2').style.display ='block'
+         document.getElementById('mensaje').innerHTML = 'Correo electronico o contraseña incorrectos.';
+         }
+         
 		},
 		registrar:function(){
 		window.location.href="http://localhost:8080/agregarUsuario"
@@ -247,5 +276,17 @@ body {
     color: #777;
   }
 }
-
+#logo {
+    color: #fed136;
+    font-family: 'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+#logo {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
 </style>

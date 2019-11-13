@@ -2,26 +2,53 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+<!-- Custom styles for this template -->
+<link href="../static/css/agency.min.css" rel="stylesheet">
 </head>
 <body>
 
  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="#" v-on:click.prevent="rapi">RapiSolver</a>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"  v-on:click.prevent="publicarServicio">Publicar Servicio</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="buscarServicio">Buscar Servicio</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Personas</a>
-    </li>
-  </ul>
+    <a class="navbar-brand" id="logo" href="#" v-on:click.prevent="rapi">RapiSolver</a>
+     <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                   <a class="nav-link" href="" v-on:click.prevent="miperfil">Mi perfil</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#"  v-on:click.prevent="publicarServicio">Publicar Servicio</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="" v-on:click.prevent="buscarServicio">Buscar Servicio</a>
+                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Proveedor</a>
+               </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                </li>
+            </ul>
+        </div>
+  
 </nav>
+
 <header>
     
         <div class="name " v-for="persona in personas" :key="persona.name">{{persona.name}},{{persona.lastName}}</div>
@@ -57,7 +84,7 @@
                     {{persona.country}}
                    
                 </p>   
-                <td><a href="#" class="btn btn-primary">Editar</a></td>   
+                <td><a href="" v-on:click.prevent="editarPerfil" class="btn btn-primary">Editar</a></td>   
                 <br>
                 <a href="#" v-on:click.prevent="comprar" >Comprar subscripcion</a>
             </div> 
@@ -122,7 +149,7 @@
                         <td >{{reserva.usuarioName}}</td>
 								<td >{{reserva.servicioName}}</td>
 								<td >{{reserva.fecha}}</td>
-                        <td><a href="#" class="btn btn-danger" v-on:click.prevent="deleteReservation(reserva.reservationId)">Eliminar</a></td>								
+                        <td><a href="#" class="btn btn-danger" v-on:click.prevent="deleteReservation(reserva.reservationId)">Cancelar</a></td>								
 							</tr>
 						</tbody>
 					</table>
@@ -173,6 +200,12 @@ export default {
         },
         modificar:function(num){
 			window.location.href="/modificarServicio/"+this.$route.params.id+"/"+num
+        },
+        salir:function(){
+         window.location.href="/Inicio"
+        },
+        editarPerfil:function(){
+         window.location.href="/editarPerfil/"+this.$route.params.id
         },
         deleteReservation:function(num){
 			axios.
@@ -234,7 +267,7 @@ export default {
                             })
                             .catch(e=>console.log(e))
                             
-                            document.getElementById('mensaje').innerHTML = 'Aqui deberian ir tus servicios';
+                            document.getElementById('mensaje').innerHTML = 'Los servicios que proveo:';
                             document.getElementById('reservaMensaje').innerHTML = 'Reservas hechas y solicitadas:';
                             
                          }
@@ -267,7 +300,7 @@ header{
    width:100%; 
    height: 200px;
    box-shadow: 0 2px 10px 0 rgba(25,25,25,0.5), 0 4px 13px 0 rgba(25,25,25,0.2);
-   background:teal;
+   background:#fed136;
    display: table;
 
 }
@@ -459,5 +492,19 @@ footer{
    background: teal;
    box-shadow: 0 -2px 10px gray;
    text-align: center;
+}
+
+#logo {
+    color: #fed136;
+    font-family: 'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+#logo {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
 }
 </style>

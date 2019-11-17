@@ -176,7 +176,7 @@
   <h1 id="h1name">{{servicio.name}}</h1>
   <p class="price" >{{servicio.cost}}	S/</p>
   <p class="description" >{{servicio.description}}</p>
-  <p><button>Contactar</button></p>
+  <p><button v-on:click.prevent="contactar(servicio.servicioId)">Contactar</button></p>
 </div>
 </div>
 
@@ -282,6 +282,9 @@ data(){
         },
         miperfil:function(){
 			window.location.href="/miPerfil/"+this.$route.params.id2
+        },
+        contactar:function(num){
+         window.location.href="/agregarReserva/"+num+"/"+this.$route.params.id2
         }
     }
     
@@ -335,7 +338,7 @@ data(){
   outline: 0;
   padding: 12px;
   color: white;
-  background-color: #000;
+  background-color: #fed136;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -514,7 +517,7 @@ data(){
 }
 
 h1 {
-  color: #FC5135;
+  color: #fed136;
   text-transform: uppercase;
   font-weight: 400;
   line-height: 1;
@@ -539,7 +542,7 @@ h1 i {
   margin: 0 1%;
   float: left;
   padding: 10px;
-  border: 2px solid #FC5135;
+  border: 2px solid #fed136;
   border-radius: 4px;
   position: relative;
   text-align: center;
@@ -553,7 +556,7 @@ h1 i {
   margin-left: -15px;
   width: 30px;
   height:30px;
-  background: #FC5135;
+  background: #fed136;
   color: white;
   line-height: 30px;
   text-align: center;
@@ -566,7 +569,7 @@ h1 i {
   margin: 0 1%;
   float: left;
   padding: 10px;
-  border: 2px solid #FC5135;
+  border: 2px solid #fed136;
   border-radius: 4px;
   position: relative;
   text-align: center;
@@ -580,7 +583,7 @@ h1 i {
   margin-left: -15px;
   width: 30px;
   height:30px;
-  background: #FC5135;
+  background: #fed136;
   color: white;
   line-height: 30px;
   text-align: center;
@@ -593,7 +596,7 @@ h1 i {
   margin: 0 1%;
   float: left;
   padding: 10px;
-  border: 2px solid #FC5135;
+  border: 2px solid #fed136;
   border-radius: 4px;
   position: relative;
   text-align: center;
@@ -607,7 +610,7 @@ h1 i {
   margin-left: -15px;
   width: 30px;
   height:30px;
-  background: #FC5135;
+  background: #fed136;
   color: white;
   line-height: 30px;
   text-align: center;
@@ -628,7 +631,7 @@ body, html {
 
 /* Style tab links */
 .tablink {
-  background-color: #555;
+  background-color: #212529;
   color: white;
   float: left;
   border: none;

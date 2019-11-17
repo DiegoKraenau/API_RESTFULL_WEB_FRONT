@@ -49,7 +49,7 @@
 <input type="text" id="myInput"  v-on:keyup="myFunction" placeholder="Buscar por nombres">
 
 <table id="myTable">
-  <tr class="header">
+  <tr class="header" style="background-color:#fed136">
     <th ></th>
     <th >Nombre</th>
     <th >Apellido</th>
@@ -57,7 +57,7 @@
     <th >Telefono</th>
     <th >Detalle</th>
   </tr>
- <tbody>
+ <tbody >
 				<tr v-for="supplier in suppliers" :key="supplier.supplierId">
                 <td ><img src="../assets/img_avatar.png" alt="Avatar" width="50px" height="50px"></td>
                 <td >{{supplier.name}}</td>

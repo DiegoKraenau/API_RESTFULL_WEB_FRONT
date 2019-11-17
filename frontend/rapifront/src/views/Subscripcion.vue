@@ -17,6 +17,7 @@
 
 <!-- Custom styles for this template -->
 <link href="../static/css/agency.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -71,7 +72,7 @@
 
 <div class="columns">
   <ul class="price">
-    <li class="header" style="background-color:#4CAF50">Pro</li>
+    <li class="header" style="background-color:#fed136">Pro</li>
     <li class="grey">160 S/ por 6 meses</li>
     <li>Poder publicar servicios ilimitados durante 6 mes</li>
     <li>Existe un descuento de 20 soles</li>
@@ -196,7 +197,7 @@ export default {
 }
 
 .button {
-  background-color: #4CAF50;
+  background-color: #fed136;
   border: none;
   color: white;
   padding: 10px 25px;

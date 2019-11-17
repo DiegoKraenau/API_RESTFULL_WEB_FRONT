@@ -69,7 +69,7 @@
 			</div>
 
              <div class="list-group">
-          <a href="#" class="list-group-item active" v-for="detalle in detalles" :key="detalle.serviceDetailsId">
+          <a href="#" class="list-group-item active" style="background-color:#fed136" v-for="detalle in detalles" :key="detalle.serviceDetailsId">
                 <div class="media col-md-3">
                     <figure class="pull-left">
                         <img class="media-object img-rounded img-responsive"  src="../assets/img4.jpg"  >
@@ -95,7 +95,7 @@
           </a>
              </div>
 			
-				
+			
 			</div>
             
 		</div>
@@ -114,11 +114,21 @@ export default {
 			detalles:null,
 			busqueda:{
 				nombre:""
-			},
+            },
+            perPage: 3,
+            currentPage: 1,
             id2:this.$route.params.id
 
         }
     },
+
+    computed: {
+      rows() {
+        return this.items.length
+      }
+    },
+
+
     mounted(){
         this.getDetalles();
     },

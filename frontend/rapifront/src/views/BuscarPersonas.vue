@@ -53,8 +53,8 @@
     <th ></th>
     <th >Nombre</th>
     <th >Apellido</th>
-    <th >Email</th>
-    <th >Telefono</th>
+    <th >Genero</th>
+    <th >Edad</th>
     <th >Detalle</th>
   </tr>
  <tbody >
@@ -62,8 +62,8 @@
                 <td ><img src="../assets/img_avatar.png" alt="Avatar" width="50px" height="50px"></td>
                 <td >{{supplier.name}}</td>
 								<td >{{supplier.lastName}}</td>
-								<td >{{supplier.email}}</td>
-								<td >{{supplier.phone}}</td>
+								<td >{{supplier.genger}}</td>
+								<td >{{supplier.age}}</td>
                 <td><a :href="'/perfil/' + supplier.supplierId +'/'+ id2" class="btn btn-primary">Ver perfil</a></td>														
 					</tr>
 </tbody>
@@ -185,5 +185,10 @@ export default {
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #343a40!important;
+    border-color: #343a40!important;
 }
 </style>

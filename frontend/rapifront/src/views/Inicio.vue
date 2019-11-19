@@ -61,7 +61,7 @@
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"  v-on:click.prevent="post">Sign in</button>
               <hr class="my-4">
               <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" v-on:click.prevent="registrar"><i class="fab fa-google mr-2"></i> Sign up</button>
-            
+              
             </form>
           </div>
         </div>
@@ -244,12 +244,12 @@ body {
 
 .btn-google {
   color: white;
-  background-color: #ea4335;
+  background-color: #212529;
 }
 
 .btn-facebook {
   color: white;
-  background-color: #3b5998;
+  background-color: #212529;
 }
 
 /* Fallback for Edge
@@ -288,5 +288,11 @@ body {
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
 }
 </style>

@@ -50,14 +50,17 @@
 </nav>
 
 <header>
-    
+         
         <div class="name " v-for="persona in personas" :key="persona.name">{{persona.name}},{{persona.lastName}}</div>
-
+         
         <div class="ava">
             <img src="../assets/img_avatar.png" alt="Avatar" style=""/>
         </div>    
 
     </header>
+    <div class="alert alert-warning" role="alert">
+    <strong>Recuerda editar tu perfil con tus datos actualizados dandole click al boton Editar.</strong>
+   </div>
     <div class="content">
         <aside class="info ">
             <div class="box">
@@ -69,21 +72,15 @@
                     {{persona.age}} años
                 </p>
 
-                <p v-for="persona in personas" :key="persona.phone">
-                    <i class="fa fa-phone"></i>
-                    {{persona.phone}}
-                </p>            
-
-                <p v-for="persona in personas" :key="persona.userName">
-                    <i  class="fa fa-envelope"></i>
-                    {{persona.userName}}
-                </p>                
+                               
 
                 <p v-for="persona in personas" :key="persona.country">
                     <i class="fa fa-home"></i>
                     {{persona.country}}
                    
-                </p>   
+                </p>
+                <strong><p class="padd-top" id="mensajeMembresia"></p></strong>   
+         
                 <td><a href="" v-on:click.prevent="editarPerfil" class="btn btn-primary">Editar</a></td>   
                 <br>
                 <a href="#" v-on:click.prevent="comprar" >Comprar subscripcion</a>
@@ -258,6 +255,7 @@ export default {
                             .catch(e=>console.log(e))
                             document.getElementById('mensaje').innerHTML = 'Usted es una cliente no tiene servicios';
                             document.getElementById('reservaMensaje').innerHTML = 'Reservas hechas:';
+                            document.getElementById('mensajeMembresia').innerHTML = 'No posee una membresia';
                          }
                           if (this.usuario.rolId == 2) {
                               //Para obtener el supplier
@@ -280,6 +278,7 @@ export default {
                             
                             document.getElementById('mensaje').innerHTML = 'Los servicios que proveo:';
                             document.getElementById('reservaMensaje').innerHTML = 'Reservas hechas y solicitadas:';
+                            document.getElementById('mensajeMembresia').innerHTML = 'Su membresia se vence en 6 meses';
                             
                          }
                     })

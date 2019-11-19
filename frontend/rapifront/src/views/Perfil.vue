@@ -55,13 +55,13 @@
 <div class="container">
   <div class="card">
     <div class="front">
-      <div class="logo"><span></span></div>
+      <img src="../assets/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="back">
       <h1>{{perfil.name}}<span>{{perfil.lastName}}</span></h1>
       <ul id="ui1">
-        <li id="l1">{{perfil.phone}}</li>
-        <li id="l2">{{perfil.email}}</li>
+        <li id="l1">{{perfil.state}}</li>
+        <li id="l2">{{perfil.city}}</li>
         <li id="l3">{{perfil.address}}</li>
         </ul>
     </div>
@@ -69,6 +69,7 @@
   </div>
 
   <br>
+
 
 
 <button class="tablink" @click="openPage('Contact', this, 'blue')" id="btn1">Recomendaciones</button>

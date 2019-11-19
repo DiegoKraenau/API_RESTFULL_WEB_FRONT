@@ -52,7 +52,7 @@
 <div id="mensaje4" class="alert alert-danger " style="display: none">
             <strong> <p class="padd-top" id="mensaje3"></p><a href="" v-on:click.prevent="aqui"> aqui</a></strong>
 </div>
-<div id="labelCrearUsuario"><h2>Registro Servicio</h2></div><br>
+<div id="labelCrearUsuario"><h2>Registrar Servicio</h2></div><br>
 	<form id="formulario" v-on:submit.prevent="post">
 		<div class="form-group" >
 			<label >Nombre:</label> <input type="text" id="label1" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese nombre del servicio" v-model="servicio.name" minlength="5" maxlength="40" required pattern="[A-Za-z]+"> 

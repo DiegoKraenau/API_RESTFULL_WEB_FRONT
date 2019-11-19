@@ -62,7 +62,7 @@
 				</ul>
 				<br>
 			
-				<a  href="" v-on:click.prevent="reservar" class="btn btn-success">Reservar</a>
+				<a  href="" v-on:click.prevent="reservar" class="btn btn-primary">Reservar</a>
         
 			</div>
 		</div>
@@ -177,5 +177,15 @@ img_avatar.png
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+.btn-success {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
 }
 </style>

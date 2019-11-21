@@ -39,7 +39,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg" style="background-color:#6c757d; border-color:#6c757d" > <span class="glyphicon glyphicon-log-out"></span> Salir </a>
                 </li>
             </ul>
         </div>
@@ -73,7 +73,7 @@
 		<div class="form-group" >
 			
 		</div>
-         <button id="envio" type="submit" class="btn btn-primary">Agregar</button>
+         <button id="envio" type="submit"  style="background-color:#fed136" class="btn btn-light">Agregar</button>
 	</form>
 
 

@@ -50,7 +50,7 @@
             <strong> <p class="padd-top" id="mensaje"></p></strong>
 </div>
 
-
+<br>
 <div id="labelCrearUsuario"><h2>Registrar Reserva</h2></div><br>
 <form id="formulario" >
 		<div class="form-group" >
@@ -155,5 +155,10 @@ export default {
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
 }
 </style>

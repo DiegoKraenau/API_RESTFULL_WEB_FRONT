@@ -517,4 +517,9 @@ footer{
     line-height: inherit;
     white-space: nowrap;
 }
+.btn-light {
+    color: #fbfbfb;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+}
 </style>

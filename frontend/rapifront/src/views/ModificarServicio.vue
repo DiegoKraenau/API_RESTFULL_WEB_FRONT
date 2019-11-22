@@ -48,7 +48,7 @@
  <div id="mensaje2" class="alert alert-success " style="display: none">
             <strong> <p class="padd-top" id="mensaje"></p></strong>
 </div>
-
+<br>
 <div id="labelCrearUsuario"><h2>Editar Servicio</h2></div><br>
 <form id="formulario" v-on:submit.prevent="edit" >
 		<div class="form-group" >
@@ -193,5 +193,11 @@ export default {
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
 }
 </style>

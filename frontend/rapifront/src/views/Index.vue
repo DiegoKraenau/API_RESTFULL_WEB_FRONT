@@ -220,7 +220,7 @@
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/Dg3OnfX7MXE" allowfullscreen></iframe>
               </div>
-              <a href="https://www.youtube.com/watch?v=vY1JQI8J8AQ&feature=youtu.be"><p>About the Product</p></a>
+              <a href="https://www.youtube.com/watch?v=Dg3OnfX7MXE"><p>About the Product</p></a>
             </div>
           </div>
         </div>
@@ -321,7 +321,7 @@
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/jOvxwJ9O7rY" allowfullscreen></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Av6a-7RSBhI&feature=youtu.be"><p>About The Team</p></a>
+                <a href="https://www.youtube.com/watch?v=jOvxwJ9O7rY"><p>About The Team</p></a>
               </div>
             </div>
           </div>

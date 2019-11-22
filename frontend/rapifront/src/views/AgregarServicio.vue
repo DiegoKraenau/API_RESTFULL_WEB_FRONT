@@ -58,15 +58,15 @@
 			<label >Nombre:</label> <input type="text" id="label1" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese nombre del servicio" v-model="servicio.name" minlength="5" maxlength="40" required pattern="[A-Za-z]+"> 
 		</div>
 		<div class="form-group" >
-			<label >Descripcion:</label> <br><textarea  id="label2" class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="servicio.description" minlength="5" maxlength="100">Escribe aquí tus comentarios</textarea>   
+			<label >Descripción:</label> <br><textarea  id="label2" class="form-control col-lg-3 col-md-3 col-xs-12" name="comentarios" rows="10" cols="40" v-model="servicio.description" minlength="5" maxlength="100">Escribe aquí tus comentarios</textarea>   
 		</div>
 		<div class="form-group" >
 			<label >Costo:</label> <input type="text" id="label3" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese el costo del servicio" v-model="servicio.cost" > 
 		</div>
         <div class="form-group" >
-			<label >Categoria:</label><br>
+			<label >Categoría:</label><br>
            <select id="label4" class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="servicio.categoryName">
-                <option selected >Seleccion la categoria</option>
+                <option selected >Selección la categoría</option>
                 <option v-for="categoria in categorias" :key="categoria.serviceCategoryId">{{categoria.categoryName}}</option>
             </select>
 		</div>

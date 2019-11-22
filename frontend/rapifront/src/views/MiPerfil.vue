@@ -60,7 +60,7 @@
 
     </header>
     <div class="alert alert-warning" role="alert">
-    <strong>Recuerda editar tu perfil con tus datos actualizados dandole click al boton Editar.</strong>
+    <strong>Recuerda editar tu perfil con tus datos actualizados dandole click al botón Editar.</strong>
    </div>
     <div class="content">
         <aside class="info ">
@@ -84,7 +84,7 @@
          
                 <td><a href="" v-on:click.prevent="editarPerfil" class="btn btn-light">Editar</a></td>   
                 <br>
-                <a href="#" v-on:click.prevent="comprar" >Comprar subscripcion</a>
+                <a href="#" v-on:click.prevent="comprar" >Comprar subscripción</a>
             </div> 
 
 
@@ -104,7 +104,7 @@
 							<tr>
 								<th>Id</th>
 								<th>Nombre</th>
-								<th>Categoria</th>
+								<th>Categoría</th>
 								<th>Cost</th>
 																
 							</tr>

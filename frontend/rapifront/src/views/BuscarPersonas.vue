@@ -53,7 +53,7 @@
     <th ></th>
     <th >Nombre</th>
     <th >Apellido</th>
-    <th >Genero</th>
+    <th >Género</th>
     <th >Edad</th>
     <th >Detalle</th>
   </tr>

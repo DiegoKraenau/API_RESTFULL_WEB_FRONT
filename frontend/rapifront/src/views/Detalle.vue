@@ -40,7 +40,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg" style="background-color:#6c757d; border-color:#6c757d" > <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg" > <span class="glyphicon glyphicon-log-out"></span> Salir </a>
                 </li>
             </ul>
         </div>
@@ -149,8 +149,9 @@ export default {
    width: 20%;
   max-width: 300px;
   height: 300px;
-  top: -390px;
-  left: 1000px;
+  top: -200px;
+  left: 800px;
+
 }
 #card1 {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -188,4 +189,16 @@ img_avatar.png
     background-color: #212529;
     border-color: #212529;
 }
+
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #f1e784, #faf8ee);
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
 </style>

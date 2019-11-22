@@ -38,7 +38,7 @@
                   <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Proveedor</a>
                </li>
             </ul>
-            
+             
             
         </div>
   
@@ -208,4 +208,22 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
     white-space: nowrap;
     margin-top:-10px;
 }
+.btn-info {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+    background-position: 10px 12px; 
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+    background-position: 10px 12px; 
+}
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #f1e784, #faf8ee);
+}
+
 </style>

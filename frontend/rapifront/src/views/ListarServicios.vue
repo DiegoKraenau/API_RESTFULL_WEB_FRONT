@@ -40,7 +40,7 @@
             </ul>
                  <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="" v-on:click.prevent="salir" class="btn btn-info"> <span    class="glyphicon glyphicon-log-out"></span>Salir</a>
+                        <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span    class="glyphicon glyphicon-log-out"></span>Salir</a>
                      </li>
                  </ul>
              
@@ -221,7 +221,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
     color: #fff;
     background-color: #fed136;
     border-color: #fed136;
-    margin-left: 610px; 
+    margin-left: 690px; 
 }
 
 .btn-primary {

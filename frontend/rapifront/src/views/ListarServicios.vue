@@ -38,6 +38,11 @@
                   <a class="nav-link" href="" v-on:click.prevent="buscarPersonas">Buscar Proveedor</a>
                </li>
             </ul>
+                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="" v-on:click.prevent="salir" class="btn btn-info"> <span    class="glyphicon glyphicon-log-out"></span>Salir</a>
+                     </li>
+                 </ul>
              
             
         </div>
@@ -65,7 +70,8 @@
 					</form>
                 </div>	
 				<br>
-				<input type="radio"  v-on:click.prevent="ordenarBajoCosto" > Ordenar por bajo Costo<br>
+				<input type="radio" v-on:click.prevent="ordenarBajoCosto"> Ordenar por bajo Costo<br>
+          
 			</div>
 
              <div class="list-group">
@@ -172,6 +178,9 @@ export default {
                     .catch(e=>console.log(e))
             } 
         },
+        salir:function(){
+         window.location.href="/Inicio"
+        },
         rapi:function(){
 			window.location.href="/Principal/"+this.$route.params.id
         },
@@ -212,7 +221,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
     color: #fff;
     background-color: #fed136;
     border-color: #fed136;
-    background-position: 10px 12px; 
+    margin-left: 610px; 
 }
 
 .btn-primary {

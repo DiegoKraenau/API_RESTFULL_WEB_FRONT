@@ -42,7 +42,8 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span
+                   class="glyphicon glyphicon-log-out"></span> Salir </a>
                 </li>
             </ul>
         </div>
@@ -81,7 +82,7 @@
                 </p>
                 <strong><p class="padd-top" id="mensajeMembresia"></p></strong>   
          
-                <td><a href="" v-on:click.prevent="editarPerfil" class="btn btn-light" style="background-color:#fed136">Editar</a></td>   
+                <td><a href="" v-on:click.prevent="editarPerfil" class="btn btn-light">Editar</a></td>   
                 <br>
                 <a href="#" v-on:click.prevent="comprar" >Comprar subscripcion</a>
             </div> 
@@ -518,8 +519,20 @@ footer{
     white-space: nowrap;
 }
 .btn-light {
-    color: #fbfbfb;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
 }
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #f1e784, #faf8ee);
+}
+.btn-info {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
+
+
 </style>

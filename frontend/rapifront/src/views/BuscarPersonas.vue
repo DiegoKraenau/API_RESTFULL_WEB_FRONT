@@ -39,7 +39,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg" style="background-color:#6c757d; border-color:#6c757d" > <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg" > <span class="glyphicon glyphicon-log-out"></span> Salir </a>
                 </li>
             </ul>
         </div>
@@ -144,11 +144,11 @@ export default {
   background-position: 10px 12px; 
   background-repeat: no-repeat; 
   width: 60%;
-  font-size: 16px; 
+  font-size: 15px; 
   padding: 12px 20px 12px 40px; 
   border: 1px solid #ddd; 
   margin-bottom: 12px; 
-  margin-left: 350px; 
+  margin-left: 271px; 
   margin-top: 40px;
   
 }
@@ -191,4 +191,16 @@ export default {
     background-color: #343a40!important;
     border-color: #343a40!important;
 }
+
+
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #f1e784, #faf8ee);
+}
+.btn-info {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
 </style>

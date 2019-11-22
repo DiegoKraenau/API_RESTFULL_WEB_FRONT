@@ -208,4 +208,21 @@ export default {
     white-space: nowrap;
 }
 
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #f1e784, #faf8ee);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
 </style>

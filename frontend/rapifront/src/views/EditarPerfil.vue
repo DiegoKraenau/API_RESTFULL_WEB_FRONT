@@ -38,7 +38,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg" style="background-color:#6c757d; border-color:#6c757d" > <span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                  <a href="" v-on:click.prevent="salir" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Salir </a>
                 </li>
             </ul>
         </div>
@@ -60,10 +60,10 @@
 			<label >Email:</label> <input type="email" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese un email" v-model="usuario.email" required> 
 		</div>
         <div class="form-group" >
-			<label >Contraseña::</label> <input type="password" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese una contraseña" v-model="usuario.contraseña" minlength="5" maxlength="40"  required> 
+			<label >Contraseña:</label> <input type="password" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese una contraseña" v-model="usuario.contraseña" minlength="5" maxlength="40"  required> 
 		</div>
 		<div class="form-group" >
-			<label >Telefono:</label> <input type="tel" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese un telefono" v-model="usuario.phone" minlength="7" maxlength="9" pattern="[0-9]{9}"> 
+			<label >Teléfono:</label> <input type="tel" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese un teléfono" v-model="usuario.phone" minlength="7" maxlength="9" pattern="[0-9]{9}"> 
 		</div>
         <div class="form-group" >
 			<label >Edad:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese su edad" v-model="usuario.age" > 
@@ -71,35 +71,35 @@
        <div class="form-group" >
 			<label >Sexo:</label><br>
            <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.genger">
-                <option selected>Seleccion el sexo</option>
+                <option selected>Selección el sexo</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Femenino">Femenino</option>
                 <option value="Ambos">Ambos</option>
             </select>
 		</div>
         <div class="form-group" >
-			<label >Pais:</label><br>
+			<label >País:</label><br>
            <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.country">
-                <option selected>Seleccion el Pais</option>
+                <option selected>Selección el País</option>
                 <option value="Perú">Perú</option>
             </select>
 		</div>
            <div class="form-group" >
 			<label >Departamento:</label><br>
            <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.state">
-                <option selected>Seleccion el Departamento</option>
+                <option selected>Selección el Departamento</option>
                 <option value="Lima">Lima</option>
             </select>
 		</div>
         <div class="form-group" >
 			<label >Distrito:</label><br>
            <select class="browser-default custom-select form-control col-lg-3 col-md-3 col-xs-12" v-model="usuario.city">
-                <option selected>Seleccion el Distrito</option>
+                <option selected>Selección el Distrito</option>
                 <option value="Lima">Lima</option>
             </select>
 		</div>
          <div class="form-group" >
-			<label >Direccion:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese su direccion" v-model="usuario.address"> 
+			<label >Dirección:</label> <input type="text" class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Ingrese su dirección" v-model="usuario.address"> 
 		</div>
 
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
@@ -261,4 +261,22 @@ export default {
     line-height: inherit;
     white-space: nowrap;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+}
+
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #f1e784, #faf8ee);
+}
+
 </style>
